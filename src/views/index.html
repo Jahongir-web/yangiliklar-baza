@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/style.css">
+  <title>All News</title>
+</head>
+<body>
+
+
+  <header>
+    <div class="header">
+      <h1>All News</h1>
+
+      <form action="/search" method="GET">
+
+        <input class="input-search" type="search" name="title">
+        <a class="edit-btn" href="/">X</a>
+
+      </form>
+
+      <ul class="menu-list">
+
+        <% if (isLoggedIn) { %>
+          <li class="menu-item">
+            <a href="/admin"  class="menu-item-link">Admin</a>
+          </li>
+          <li class="menu-item">
+            <a href="/login" class="menu-item-link">Log Out</a>
+          </li>
+        <% } %>
+
+        <% if (!isLoggedIn) { %>
+          <li class="menu-item">
+            <a href="/login" class="menu-item-link">Log In</a>
+          </li>
+        <% } %>
+
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <section class="news-section">
+      <ul class="news-list">
+
+        <% news.map(newsItem => { %>
+
+          <li class="news-item">
+            <a class="title-link" href="/news/<%= newsItem.id %>"><h3><%= newsItem.title %></h3></a>
+            <img class="img-news-index" src="<%= newsItem.image %>" alt="<%= newsItem.title %>" width="300" height="250">
+            <p class="news-content"><%= newsItem.content %></p>
+          </li>
+
+        <% }) %>
+
+      </ul>
+    </section>
+  </main>
+
+  <script>
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/style.css">
+  <title>Admin-panel</title>
+</head>
+<body>
+  <header>
+    <div class="header">
+      <h1>News</h1>
+      <form action="/admin/search" method="GET">
+
+        <input class="input-search" type="text" name="title">
+        <a class="edit-btn" href="/admin">X</a>
+      </form>
+
+      <ul class="menu-list">
+        <li class="menu-item">
+          <a href="/" class="menu-item-link">Home</a>
+        </li>
+
+        <li class="menu-item">
+          <a href="/login" class="menu-item-link">Log Out</a>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+
+
+  <main>
+
+    <form class="created-form" method="POST" action="/admin"  enctype="multipart/form-data">
+      <fieldset class="field">
+        <legend>Create News</legend>
+        <input class="title-news" type="text" name="title" placeholder="title...">
+        <textarea name="content" class="content-news" cols="30" rows="10">Content</textarea>
+        <input class="img-news" type="file" name="photo" accept="image/*">
+        <button>Create</button>
+      </fieldset>
+
+    </form>
+
+
+
+    <section class="news-section">
+      <ul class="news-list">
+
+        <% news.map(newsItem => { %>
+
+          <li class="news-item">
+            <a class="title-link" href="/news/<%= newsItem.id %>"><%= newsItem.title %></a>
+            <img class="img-news-index" src="<%= newsItem.image %>" alt="<%= newsItem.title %>" width="300" height="250">
+
+            <a class="delete-btn" href="/admin/<%= newsItem.id %>">Delete</a>
+
+            <a class="edit-btn" href="/admin/edit/<%= newsItem.id %>" dataset-id="<%= newsItem.id %>">Edit News</a>
+
+          </li>
+
+        <% }) %>
+
+      </ul>
+    </section>
+  </main>
+
+</body>
+</html>

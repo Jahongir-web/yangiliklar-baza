@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/style.css">
+  <title>News</title>
+</head>
+<body>
+
+
+  <header>
+    <div class="header">
+      <h1>News</h1>
+
+
+
+      <ul class="menu-list">
+        <li class="menu-item">
+          <a href="/" class="menu-item-link">Home</a>
+        </li>
+
+
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <section class="news-section container">
+      <ul class="news-list">
+
+        <% news.map(newsItem => { %>
+
+          <li class="news-by-id">
+
+            <img class="img-news" src="<%= newsItem.image %>" alt="<%= newsItem.title %>" width="300" height="200">
+            <h2><%= newsItem.title %> </h2>
+            <h4 class="created-data">Created: <%= newsItem.date%> </h4>
+            <p class="views-txt">views:<span class="views"><%= newsItem.views%></span></p>
+            <p class="news-cont"><%= newsItem.content %> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem est labore cupiditate a quidem eius velit, voluptatibus aut magni veniam vel non laborum natus ea? Delectus odio eos tenetur corporis ipsa, molestiae quod distinctio reiciendis beatae suscipit debitis deleniti aut. Odit, laboriosam! Delectus autem dolorem aspernatur reprehenderit possimus, modi dolor eum. Voluptatem aut tempore cupiditate ipsam eaque delectus saepe illo? Ad quae iusto eveniet, architecto nihil provident consequatur porro sed a deserunt enim quibusdam consequuntur culpa reprehenderit doloribus tempora animi nostrum rerum? Rem beatae similique quaerat quod maxime, est, molestias modi iure odio, nemo eaque! Harum itaque ullam sint neque!</p>
+          </li>
+
+        <% }) %>
+
+      </ul>
+    </section>
+  </main>
+
+</body>
+</html>
