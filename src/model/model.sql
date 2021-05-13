@@ -1,8 +1,8 @@
 create table news (
   id serial not null primary key,
   news_img varchar(64),
-  title varchar(128) not null,
-  content varchar(512) not null,
+  title varchar(256) not null,
+  content varchar not null,
   views smallint,
   created_at timestamp default current_timestamp
 );
