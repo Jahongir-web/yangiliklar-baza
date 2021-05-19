@@ -6,9 +6,14 @@ const { rows } = require('../../database/pg')
 const uploadsDir = path.join(__dirname, "../../static/images")
 
 const GET = async (req, res) => {
-  res.render("admin", {
-    news: await rows(newsModel.SQL),
-  })
+  if ( typeof(req.session.user_id) === 'number') {
+    res.render("admin", {
+      news: await rows(newsModel.SQL),
+    })
+  } else {
+    res.redirect("login")
+  }
+
 }
 
 const search = async (req, res) => {
@@ -55,16 +60,26 @@ const edit = async (req, res) => {
   const { title, content, oldphoto } = req.body
   const { id } = req.params
 
-  console.log(oldphoto);
+  console.log(oldphoto + '1');
 
-  const photo = req.files.photo
-  const name = v4() + "." + photo.mimetype.split("/")[1]
-  const addresImage = "/images/" + name
-  photo.mv(path.join(uploadsDir, name), (error) => {
+  try {
+    const photo = req.files.photo
+    const name = v4() + "." + photo.mimetype.split("/")[1]
+    const addresImage = "/images/" + name
+    photo.mv(path.join(uploadsDir, name), (error) => {
     if(error) {console.error(error)}
-	})
+    })
 
-  await rows(newsModel.UPDATE_SQL, addresImage, title, content, id)
+    await rows(newsModel.UPDATE_SQL, addresImage, title, content, id)
+
+  }
+  catch (error) {
+    if (error) {
+      addresImage = oldphoto
+
+      await rows(newsModel.UPDATE_SQL, addresImage, title, content, id)
+    }
+  }
 
   res.render("edit", {
     news: await rows(newsModel.GET_ITEM, id),
