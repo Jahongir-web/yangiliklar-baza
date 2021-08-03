@@ -3,7 +3,7 @@ const ejs = require('ejs')
 const fileUpload = require("express-fileupload")
 const session = require('express-session')
 
-// load routes
+// load routes.
 const newsRoutes = require('./src/routes/news')
 const adminRoutes = require('./src/routes/admin')
 const userRoutes = require('./src/routes/user')
@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 4001
 
 const app = express()
 
-// middlewares
+// middlewares 
 app.use(express.urlencoded({ extended: true, }))
 app.use(fileUpload())
 app.use(express.json())
