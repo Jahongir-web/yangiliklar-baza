@@ -9,7 +9,7 @@ const adminRoutes = require('./src/routes/admin')
 const userRoutes = require('./src/routes/user')
 
 // defines
-const PORT = process.env.PORT || 4001
+const PORT = process.env.PORT || 4000
 
 const app = express()
 
